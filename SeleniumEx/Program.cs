@@ -4,7 +4,7 @@ using OpenQA.Selenium.Chrome;
 using SeleniumEx;
 
 
-GHPTests ghp = new GHPTests();
+/*GHPTests ghp = new GHPTests();
 List<string> drivers = new List<string>();
 drivers.Add("EdgeDriver()");
 drivers.Add("ChromeDriver()");
@@ -35,4 +35,30 @@ foreach (var d in drivers)
 
     }
     ghp.Destruct();
+}*/
+
+//15/11/23
+AmazonTests amz = new();
+amz.InitializeChromeDriver();
+try
+{
+    //amz.TitleTest();
+    //amz.LogoClickTest();
+    //amz.SearchProductTest();
+    //amz.ReloadHomePage();
+    //amz.TodaysDealTest();
+    //amz.ReloadHomePage();
+    //amz.SignInAccListTest();
+    amz.SearchAndFilterProductByBrandTest();
+    amz.SortBySelecttTest();
 }
+catch(AssertionException ex)
+{
+    Console.WriteLine(ex.Message);
+    Console.WriteLine("Test failed");   
+}
+catch(NoSuchElementException nse)
+{
+    Console.WriteLine(nse.Message);
+}
+amz.Destruct();
