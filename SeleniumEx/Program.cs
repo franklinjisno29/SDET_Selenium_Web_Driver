@@ -42,13 +42,13 @@ AmazonTests amz = new();
 amz.InitializeChromeDriver();
 try
 {
-    //amz.TitleTest();
-    //amz.LogoClickTest();
-    //amz.SearchProductTest();
-    //amz.ReloadHomePage();
-    //amz.TodaysDealTest();
-    //amz.ReloadHomePage();
-    //amz.SignInAccListTest();
+    amz.TitleTest();
+    amz.LogoClickTest();
+    amz.SearchProductTest();
+    amz.ReloadHomePage();
+    amz.TodaysDealTest();
+    amz.ReloadHomePage();
+    amz.SignInAccListTest();
     amz.SearchAndFilterProductByBrandTest();
     amz.SortBySelecttTest();
 }
