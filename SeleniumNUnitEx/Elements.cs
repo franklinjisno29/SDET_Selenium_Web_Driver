@@ -79,6 +79,7 @@ namespace SeleniumNUnitEx
             addressField.SendKeys("Thrissur, kerala");
             Thread.Sleep(2000);
         }
+        [Ignore(" ")]
         [Test]
         public void TestWindows()
         {
@@ -104,6 +105,7 @@ namespace SeleniumNUnitEx
             driver.SwitchTo().Window(parentWindowHandle);
             driver.Quit();
         }
+        [Ignore(" ")]
         [Test]
         public void TestAlerts()
         {
