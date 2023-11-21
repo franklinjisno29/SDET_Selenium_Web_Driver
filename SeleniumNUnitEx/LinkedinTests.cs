@@ -105,7 +105,13 @@ namespace SeleniumNUnitEx
             IWebElement passwordInput = fluentWait.Until(d => d.FindElement(By.Id("session_password")));
             emailInput.SendKeys(email);
             passwordInput.SendKeys(pwd);
+            TakeScreeshot();
+
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].scrollIntoView(true);", driver.FindElement(By.XPath("//button[@type='submit']")));
             Thread.Sleep(3000);
+            js.ExecuteScript("arguments[0].click();", driver.FindElement(By.XPath("//button[@type='submit']")));
+
             ClearForm(emailInput);
             ClearForm(passwordInput);
         }
@@ -118,5 +124,6 @@ namespace SeleniumNUnitEx
                 new object[] { "3@3.com", "3456" }
             };
         }
+        
     }
 }

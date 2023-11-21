@@ -67,5 +67,14 @@ namespace SeleniumNUnitEx
                 return false;
             }
         }
+        public void TakeScreeshot()
+        {
+            ITakesScreenshot its = (ITakesScreenshot)driver;
+            Screenshot screenshot = its.GetScreenshot();
+            string currDir = Directory.GetParent(@"../../../").FullName;
+            string filePath = currDir + "/Screenshots/ss_" + DateTime.Now.ToString("yyyy.mm.dd_HH.mm.ss") + ".png";
+            screenshot.SaveAsFile(filePath);
+            Console.WriteLine("taken screenshot");
+        }
     }
 }
