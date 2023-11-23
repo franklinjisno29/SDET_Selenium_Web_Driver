@@ -33,6 +33,11 @@ namespace AssignmentNunit.PageObjects
         {
             AddToCartClick?.Click();
         }
+        public string GetTitle()
+        {
+            string t = driver.Url;
+            return t;
+        }
         
     }
 }

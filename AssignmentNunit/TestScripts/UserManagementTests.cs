@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace AssignmentNunit.TestScripts
 {
@@ -13,24 +14,34 @@ namespace AssignmentNunit.TestScripts
     internal class UserManagementTests : CoreCodes
     {
         [Test, Order(1), Category("Regression Test")]
-        public void SearchProductFuncTest()
+        [TestCaseSource(nameof(productData))]
+
+        public void SearchProductFuncTest(string pId)
         {
+            DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
+            fluentWait.Timeout = TimeSpan.FromSeconds(5);
+            fluentWait.PollingInterval = TimeSpan.FromMilliseconds(50);
+            fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            fluentWait.Message = "element not found";
             var homePage = new NaaptolHomePage(driver);
             var searchpage = homePage.TypeSearch("eyewear");
             Thread.Sleep(2000);
-            var productpage = searchpage.ClickProduct();
+            var productpage = searchpage.ClickProduct(pId);
             List<string> lstwindow = driver.WindowHandles.ToList();
-            foreach (var handle in lstwindow)
-            {
-                driver.SwitchTo().Window(handle);
-                Thread.Sleep(2000);
-            }
+            driver.SwitchTo().Window(lstwindow[1]);
             Thread.Sleep(2000);
             productpage.ClickSize();
             productpage.ClickAddToCart();
+            string urllink = productpage.GetTitle();
             Thread.Sleep(2000);
-            string urllink = "https://www.naaptol.com/eyewear/reading-glasses-with-led-lights-lrg4/p/12612074.html";
-            Assert.AreEqual(driver.FindElement(By.XPath("//a[contains(text(),'LRG4')]")).GetAttribute("href"), urllink);
+            Assert.That(urllink, Is.EqualTo(driver.FindElement(By.XPath("//a[contains(text(),'LRG4')]")).GetAttribute("href")));
+        }
+        static object[] productData()
+        {
+            return new object[]
+            {
+                new object[]  { "5" }
+            };
         }
     }
 }

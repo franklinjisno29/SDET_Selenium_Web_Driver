@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssignmentNunit", "Assignme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rediff", "Rediff\Rediff.csproj", "{8DB0F2C2-FFB2-46E5-9C93-A3AFED0F3E70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BunnyCart", "BunnyCart\BunnyCart.csproj", "{D8C2412E-9DD1-4F9E-980C-2796FBBC2CF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8DB0F2C2-FFB2-46E5-9C93-A3AFED0F3E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DB0F2C2-FFB2-46E5-9C93-A3AFED0F3E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DB0F2C2-FFB2-46E5-9C93-A3AFED0F3E70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8C2412E-9DD1-4F9E-980C-2796FBBC2CF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8C2412E-9DD1-4F9E-980C-2796FBBC2CF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8C2412E-9DD1-4F9E-980C-2796FBBC2CF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8C2412E-9DD1-4F9E-980C-2796FBBC2CF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

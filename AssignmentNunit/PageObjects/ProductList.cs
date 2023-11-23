@@ -3,6 +3,7 @@ using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,13 +19,17 @@ namespace AssignmentNunit.PageObjects
         }
 
         //Arrange
-        [FindsBy(How = How.XPath, Using = "//div[@pid='12612074']")]
-        public IWebElement? ProductSelect { get; set; }
+        //[FindsBy(How = How.XPath, Using = "//div[@id='productItem" + pId + "']")]
+        //public IWebElement? ProductSelect { get; set; }
 
         //Act
-        public Product ClickProduct()
+        public IWebElement GetProductSelect(string pId)
         {
-            ProductSelect?.Click();
+            return driver.FindElement(By.XPath("//div[@id='productItem" + pId + "']"));
+        }
+        public Product ClickProduct(string pId)
+        {
+            GetProductSelect(pId)?.Click();
             return new Product(driver);
 
         }
