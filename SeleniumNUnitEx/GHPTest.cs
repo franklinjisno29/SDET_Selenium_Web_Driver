@@ -19,18 +19,28 @@ namespace SeleniumNUnitEx
             Assert.AreEqual("Google", driver.Title);
             Console.WriteLine("Title Test Passed");
         }
-        [Ignore("other")]
+        //[Ignore("other")]
         [Test]
         [Order(20)]
         public void GSTest()
         {
-            IWebElement searchinputtextbox = driver.FindElement(By.Id("APjFqb"));
-            searchinputtextbox.SendKeys("hp laptops");
-            Thread.Sleep(2000);
-            IWebElement gsbutton = driver.FindElement(By.ClassName("gNO89b"));
-            gsbutton.Click();
-            Assert.AreEqual("hp laptops - Google Search", driver.Title);
-            Console.WriteLine("page change Test Passed");
+            string? currDir = Directory.GetParent(@"../../../").FullName;
+            string? excelFilePath = currDir + "//InputData.xlsx";
+            Console.WriteLine(excelFilePath);
+            List<ExcelData> excelDataList = ExcelUtils.ReadExcelData(excelFilePath);
+            foreach ( var excelData in excelDataList )
+            {
+                Console.WriteLine($"Text: {excelData.searchText}");
+                IWebElement searchinputtextbox = driver.FindElement(By.Id("APjFqb"));
+                searchinputtextbox.SendKeys(excelData.searchText);
+                Thread.Sleep(2000);
+                IWebElement gsbutton = driver.FindElement(By.ClassName("gNO89b"));
+                gsbutton.Click();
+                Assert.That(driver.Title, Is.EqualTo(excelData.searchText + " - Google Search"));
+                Console.WriteLine("page change Test Passed");
+                driver.Navigate().GoToUrl("https://google.com/");
+            }
+            
         }
         [Ignore("other")]
         [Test]
