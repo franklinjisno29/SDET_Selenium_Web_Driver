@@ -24,6 +24,15 @@ namespace CaseStudy.PageObjects
         [FindsBy(How = How.XPath, Using = "//a[@id='cart-panel-button-0']")]
         public IWebElement? AddToCartClick { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//input[@class='input_Special_2']")]
+        public IWebElement? InQtyClick { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[contains(text(),'Remove')]")]
+        public IWebElement? RemoveClick { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//a[@title='Close']")]
+        public IWebElement? CloseClick { get; set; }
+
         //Act
         public void ClickSize()
         {
@@ -38,6 +47,19 @@ namespace CaseStudy.PageObjects
             string t = driver.Url;
             return t;
         }
-        
+        public void ClickInQty()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].value='';", InQtyClick);
+            InQtyClick?.SendKeys("2");
+        }
+        public void ClickRemove()
+        {
+            RemoveClick?.Click();
+        }
+        public void ClickClose()
+        {
+            CloseClick?.Click();
+        }
     }
 }

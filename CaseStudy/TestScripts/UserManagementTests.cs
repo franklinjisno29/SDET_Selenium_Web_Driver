@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using AssignmentNunit.Utilities;
 using BunnyCart.Utilities;
+using System.Xml.Linq;
 
 namespace AssignmentCaseStudyNunit.TestScripts
 {
@@ -43,6 +44,10 @@ namespace AssignmentCaseStudyNunit.TestScripts
                 string urllink = productpage.GetTitle();
                 Thread.Sleep(2000);
                 Assert.That(urllink, Is.EqualTo(driver.FindElement(By.XPath("//a[contains(text(),'BRG9')]")).GetAttribute("href")));
+                productpage.ClickInQty();
+                productpage.ClickRemove();
+                productpage.ClickClose();
+                Thread.Sleep(5000);
 
             }
 
