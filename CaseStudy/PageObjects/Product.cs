@@ -34,9 +34,10 @@ namespace CaseStudy.PageObjects
         public IWebElement? CloseClick { get; set; }
 
         //Act
-        public void ClickSize()
+        public bool ClickSize()
         {
             SizeClick?.Click();
+            return true;
         }
         public void ClickAddToCart()
         {

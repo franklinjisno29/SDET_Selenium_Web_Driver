@@ -39,11 +39,13 @@ namespace AssignmentCaseStudyNunit.TestScripts
                 List<string> lstwindow = driver.WindowHandles.ToList();
                 driver.SwitchTo().Window(lstwindow[1]);
                 Thread.Sleep(2000);
-                productpage.ClickSize();
+                bool IsSizeSelected = productpage.ClickSize();
+                Assert.That(IsSizeSelected, Is.True);
                 productpage.ClickAddToCart();
                 string urllink = productpage.GetTitle();
                 Thread.Sleep(2000);
                 Assert.That(urllink, Is.EqualTo(driver.FindElement(By.XPath("//a[contains(text(),'BRG9')]")).GetAttribute("href")));
+                
                 productpage.ClickInQty();
                 productpage.ClickRemove();
                 productpage.ClickClose();
