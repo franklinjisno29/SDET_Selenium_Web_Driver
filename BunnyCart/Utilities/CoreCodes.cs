@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
+using Serilog;
 
 namespace BunnyCart.Utilities
 {
@@ -63,6 +64,7 @@ namespace BunnyCart.Utilities
         {
             driver.Quit();
             extent.Flush();
+
         }
         public bool CheckLinkStatus(string url)
         {
@@ -84,6 +86,22 @@ namespace BunnyCart.Utilities
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView(true);", element);
+        }
+
+        public void LogTestResult(string testName, string result, string errorMessage = null)
+        {
+            Log.Information(result);
+            test = extent.CreateTest(testName);
+            if(errorMessage == null)
+            {
+                Log.Information(testName + "passed");
+                test.Pass(result);
+            }
+            else
+            {
+                Log.Error($"Test failed for {testName} \n Exception: \n{errorMessage}");
+                test.Fail(result);
+            }
         }
     }
 }
